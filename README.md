@@ -67,7 +67,9 @@ scripts (`run.sh`, `burst.sh` and the sweeps) set no `sslmode`, so pgbench used 
 default; the drill, probe and error scripts set `sslmode=disable`. Use `sslmode=require` or
 stricter for anything that crosses a network you don't control.
 
-Run the scripts from `scripts/` on the client machine:
+Run the scripts on the client machine. It needs `psql`, `pgbench` and `pg_dump` (PostgreSQL
+18 client tools), `mpstat` (sysstat), GNU `time`, `bc`, and Python 3 with psycopg 3 for
+`drills.py`. Run each script from any folder; they find `run.sh` next to themselves:
 
 | Script | What it does |
 |---|---|
@@ -77,7 +79,7 @@ Run the scripts from `scripts/` on the client machine:
 | `sweep_managed.sh`, `sweep_managed_only.sh` | The same sweep on Selfhost.dev managed pooling. They set the pool size through the `selfhost` CLI and ran from a laptop, sending each run to the client with a small SSH wrapper (`./vm client <command>`, not included). Run `run.sh` on the client yourself to reproduce them elsewhere |
 | `burst.sh` | 50 steady clients plus a 450-client burst, to test `reserve_pool_size` |
 | `drills.py managed\|selfrun\|selfrun-pool1` | The six transaction-mode drills; `drills.sql` lists their statements |
-| `errors.sh`, `probe.py` | The error cases, and a connect-and-`SELECT 1` probe every 100 ms during a restart |
+| `errors.sh`, `probe.py` | The error cases, and a connect-and-`SELECT 1` probe every 100 ms during a restart. The "managed" sections of `errors.sh` expect a pooler on port 6432 of `PG_HOST`, as on Selfhost.dev managed pooling; without one they fail with "connection refused" |
 | `idle_mem.py` | Memory per idle direct connection |
 
 ## Reading the numbers

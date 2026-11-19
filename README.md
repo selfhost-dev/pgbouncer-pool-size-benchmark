@@ -48,9 +48,10 @@ Set these environment variables first:
 Passwords come from `~/.pgpass`; none are stored here. For the self-run pooler:
 
 1. Copy `pgbouncer/userlist.txt.example` to `pgbouncer/userlist.txt`, put in the user's SCRAM
-   verifier (`SELECT rolpassword FROM pg_authid WHERE rolname = 'admin'` on the server), and
-   run `chmod 600 pgbouncer/userlist.txt`. Git ignores this file.
-2. Replace `<postgres-host>` in `pgbouncer/pgbouncer.ini` with your Postgres address.
+   verifier (`SELECT rolpassword FROM pg_authid WHERE rolname = 'admin'`, run as a superuser
+   on the server). Make the file readable only by you and the container's user (the image
+   runs PgBouncer as UID 70), not by everyone. Git ignores this file.
+2. Replace both `<postgres-host>` placeholders in `pgbouncer/pgbouncer.ini` with your Postgres address.
 3. `listen_addr` is `127.0.0.1`. To reach the pooler from a separate client machine, set it
    to the host's private address and allow only that client in your firewall. Never expose
    port 6432 to the internet: the admin console (`admin_users`) is on the same port.
@@ -61,9 +62,10 @@ settings (`SET default_pool_size`, `RECONNECT`, `SET query_wait_timeout`), add a
 column and an index on `pgbench_branches`, dump tables to `/tmp`, and the drills change
 session state on shared connections on purpose.
 
-**TLS was off.** Every run used `sslmode=disable` so TLS stayed out of the measured path,
-and the scripts keep that setting. Use `sslmode=require` or stricter for anything that
-crosses a network you don't control.
+**TLS was off.** We did not turn on TLS for the test databases or poolers. The pgbench
+scripts (`run.sh`, `burst.sh` and the sweeps) set no `sslmode`, so pgbench used libpq's
+default; the drill, probe and error scripts set `sslmode=disable`. Use `sslmode=require` or
+stricter for anything that crosses a network you don't control.
 
 Run the scripts from `scripts/` on the client machine:
 

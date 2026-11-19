@@ -68,7 +68,8 @@ SELECT a.pid, a.application_name, a.client_addr
 FROM pg_locks l JOIN pg_stat_activity a USING (pid)
 WHERE l.locktype = 'advisory' AND l.objid = 42;
 -- clean-up, DIRECT:
-SELECT pg_terminate_backend(pid) FROM pg_locks WHERE locktype = 'advisory' AND objid = 42;
+-- only the backend client A's lock ran on: use the pid the first pg_advisory_lock call returned
+SELECT pg_terminate_backend(pid) FROM pg_locks WHERE locktype = 'advisory' AND objid = 42 AND pid = <client-A-backend-pid>;
 
 -- fix
 BEGIN;

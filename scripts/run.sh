@@ -17,7 +17,7 @@ R="$WORKDIR"/results/$LABEL
     psql -h "$DB_HOST" -p 5432 -U admin -d postgres -Atc "select count(*) filter (where backend_type='client backend'), count(*) filter (where backend_type='client backend' and state='active') from pg_stat_activity" 2>/dev/null; sleep 1; done > $R.backends ) &
 SB=$!
 # SHOW POOLS on the self-run pooler
-if [ "$HOST" = "${PGB_HOST}" ]; then
+if [ "$HOST" = "${PGB_HOST:-}" ]; then
   ( end=$((SECONDS+DUR+5)); while [ $SECONDS -lt $end ]; do
       psql -h "${PGB_HOST}" -p 6432 -U admin -d pgbouncer -Atc "SHOW POOLS" 2>/dev/null | grep '^postgres|admin|'; sleep 1; done > $R.pools ) &
   SP=$!

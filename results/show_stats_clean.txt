@@ -1,0 +1,10 @@
+== self-run, pool 20, 500 clients, workload A, steady for 130 s
+ database  | avg_xact_count | avg_query_count | avg_recv | avg_xact_time | avg_query_time | avg_wait_time 
+ postgres  |           4410 |           30875 |  1916045 |        113205 |          16076 |        108671 
+SHOW POOLS: cl_active=20 cl_waiting=480 sv_active=20 sv_idle=0 maxwait_us=108994
+tps = 4450.463527 (without initial connection time)
+== self-run, pool 40, 500 clients, workload A, steady for 130 s
+ database  | avg_xact_count | avg_query_count | avg_recv | avg_xact_time | avg_query_time | avg_wait_time 
+ postgres  |           6598 |           46192 |  2866600 |         75618 |          10703 |         69555 
+SHOW POOLS: cl_active=40 cl_waiting=460 sv_active=40 sv_idle=0 maxwait_us=54365
+tps = 6597.510907 (without initial connection time)

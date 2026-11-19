@@ -1,0 +1,33 @@
+=== query_wait_timeout [selfrun, leakdemo pool_size=1, query_wait_timeout=5] ===
+  SHOW POOLS leakdemo: cl_active=1 cl_waiting=0 sv_active=1 maxwait=0s
+  SHOW POOLS leakdemo: cl_active=1 cl_waiting=1 sv_active=1 maxwait=1s
+  SHOW POOLS leakdemo: cl_active=1 cl_waiting=1 sv_active=1 maxwait=2s
+  SHOW POOLS leakdemo: cl_active=1 cl_waiting=1 sv_active=1 maxwait=3s
+  FATAL:  query_wait_timeout
+  server closed the connection unexpectedly
+  	This probably means the server terminated abnormally
+  	before or while processing the request.
+  connection to server was lost
+  Command exited with non-zero status 2
+    client B gave up after 5.16 s
+=== wrong password [managed 6432] ===
+  psql: error: connection to server at "<postgres-host>", port 6432 failed: FATAL:  SASL authentication failed
+=== md5-only client [managed 6432] ===
+  psql: error: connection to server at "<postgres-host>", port 6432 failed: authentication method requirement "md5" failed: server requested SASL authentication
+=== unknown user [managed 6432] ===
+  psql: error: connection to server at "<postgres-host>", port 6432 failed: FATAL:  no such user
+=== connection limits on Postgres ===
+  max_connections = 512
+  reserved_connections = 0
+  superuser_reserved_connections = 3
+=== pg_dump through the pooler (transaction mode) ===
+    port 6432: exit=0  0.08 s
+  port 6432: dump has 2 COPY/CREATE lines
+    port 5432: exit=0  0.08 s
+  port 5432: dump has 2 COPY/CREATE lines
+  big table via 6432 exit=0 lines=10000062
+=== migration script through the pooler (psql -f, autocommit) under load ===
+  run 1: SET 0 ALTER TABLE CREATE INDEX 0
+  run 2: SET 0 ALTER TABLE CREATE INDEX 2s
+  run 3: SET 0 ALTER TABLE CREATE INDEX 0
+ERRORS_DONE

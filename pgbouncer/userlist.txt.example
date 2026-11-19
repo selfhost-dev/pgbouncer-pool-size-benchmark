@@ -1,0 +1,1 @@
+"admin" "SCRAM-SHA-256$<iterations>:<salt>$<StoredKey>:<ServerKey>"

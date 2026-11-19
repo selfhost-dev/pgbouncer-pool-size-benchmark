@@ -1,0 +1,37 @@
+Linux (selfrun-pooler-host) 	11/18/26 	_x86_64_	(2 CPU)
+
+06:18:34      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:18:39       70      1455    2.60    6.20    0.00    0.00    8.80     0  pgbouncer
+
+06:18:39      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:18:44       70      1455    5.00   22.00    0.00    0.20   27.00     0  pgbouncer
+
+06:18:44      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:18:49       70      1455    5.60   25.20    0.00    0.20   30.80     0  pgbouncer
+
+06:18:49      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:18:54       70      1455    5.60   26.20    0.00    0.20   31.80     0  pgbouncer
+
+06:18:54      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:18:59       70      1455    5.40   21.80    0.00    0.00   27.20     0  pgbouncer
+
+06:18:59      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:19:04       70      1455    6.00   24.80    0.00    0.20   30.80     0  pgbouncer
+
+06:19:04      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:19:09       70      1455    5.00   23.00    0.00    0.20   28.00     0  pgbouncer
+
+06:19:09      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:19:14       70      1455    5.20   21.60    0.00    0.20   26.80     0  pgbouncer
+
+06:19:14      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:19:19       70      1455    4.40   22.80    0.00    0.20   27.20     0  pgbouncer
+
+06:19:19      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:19:24       70      1455    5.80   23.20    0.00    0.20   29.00     0  pgbouncer
+
+06:19:24      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:19:29       70      1455    4.60   22.80    0.00    0.00   27.40     0  pgbouncer
+
+Average:      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+Average:       70      1455    5.02   21.78    0.00    0.15   26.80     -  pgbouncer

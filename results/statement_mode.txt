@@ -1,0 +1,14 @@
+{"mode":"statement","p":20}
+== statement mode
+single SELECT (autocommit): 1
+BEGIN; SELECT; COMMIT: connection to server was lost
+multi-statement string: 2
+pgbench -S 200 clients 30s: tps = 50974.065065 (without initial connection time) 
+pgbench TPC-B 50 clients 15s: pgbench: error: pgbench: client 26 script 0 aborted in command 4 query 0: FATAL:  transaction blocks not allowed in statement pooling mode error: client 0 script 0 aborted in command 4 query 0: FATAL:  transaction blocks not allowed in statement pooling mode 
+{"mode":"transaction","p":20}
+== transaction mode
+single SELECT (autocommit): 1
+BEGIN; SELECT; COMMIT: COMMIT
+multi-statement string: 2
+pgbench -S 200 clients 30s: tps = 61435.752371 (without initial connection time) 
+pgbench TPC-B 50 clients 15s: tps = 4846.379800 (without initial connection time) 

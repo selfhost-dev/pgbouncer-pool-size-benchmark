@@ -1,0 +1,13 @@
+pgbouncer/userlist.txt
+__pycache__/
+*.pyc
+.DS_Store
+results/*.out
+results/*.lat
+results/summary.tsv
+results/*.backends
+results/*.pools
+results/*.clientcpu
+tmp/
+*.sql.dump
+.env

@@ -1,0 +1,38 @@
+Linux (managed-db-host) 	11/18/26 	_x86_64_	(4 CPU)
+
+06:24:11      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:24:16      988     16066    3.60   18.80    0.00    9.60   22.40     0  pgbouncer
+
+06:24:16      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:24:21      988     16066    7.20   37.00    0.00   14.20   44.20     3  pgbouncer
+
+06:24:21      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:24:26      988     16066   11.20   58.40    0.00   25.20   69.60     0  pgbouncer
+
+06:24:26      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:24:31      988     16066   12.20   62.60    0.00   24.80   74.80     0  pgbouncer
+
+06:24:31      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:24:36      988     16066   11.60   64.40    0.00   23.60   76.00     1  pgbouncer
+
+06:24:36      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:24:41      988     16066   11.60   64.00    0.00   24.20   75.60     0  pgbouncer
+
+06:24:41      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:24:46      988     16066   12.00   64.40    0.00   23.20   76.40     3  pgbouncer
+
+06:24:46      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:24:51      988     16066   11.80   64.60    0.00   23.40   76.40     0  pgbouncer
+
+06:24:51      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:24:56      988     16066   12.00   63.80    0.00   24.00   75.80     0  pgbouncer
+
+06:24:56      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:25:01      988     16066   11.60   64.40    0.00   24.00   76.00     3  pgbouncer
+
+06:25:01      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+06:25:06      988     16066   11.80   64.00    0.00   23.80   75.80     3  pgbouncer
+
+Average:      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
+Average:      988     16066   10.60   56.95    0.00   21.82   67.55     -  pgbouncer
+

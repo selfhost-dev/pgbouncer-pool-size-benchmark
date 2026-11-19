@@ -1,0 +1,14 @@
+{"p":5,"r":0,"msg":"PgBouncer reconfiguration started."}
+s-managed-4vcpu-pool5	tps=1896.294466	p50=264.2	p95=278.8	p99=288.0	backends_max=10	active_max=6	rc=0
+{"p":10,"r":0,"msg":"PgBouncer reconfiguration started."}
+s-managed-4vcpu-pool10	tps=3347.906681	p50=155.3	p95=167.5	p99=172.5	backends_max=15	active_max=11	rc=0
+{"p":20,"r":0,"msg":"PgBouncer reconfiguration started."}
+s-managed-4vcpu-pool20	tps=4738.971875	p50=107.5	p95=118.6	p99=135.5	backends_max=25	active_max=21	rc=0
+{"p":40,"r":0,"msg":"PgBouncer reconfiguration started."}
+s-managed-4vcpu-pool40	tps=6250.122621	p50=77.6	p95=102.2	p99=142.1	backends_max=45	active_max=41	rc=0
+{"p":80,"r":0,"msg":"PgBouncer reconfiguration started."}
+s-managed-4vcpu-pool80	tps=6302.586733	p50=72.7	p95=115.8	p99=149.9	backends_max=85	active_max=81	rc=0
+{"p":160,"r":0,"msg":"PgBouncer reconfiguration started."}
+s-managed-4vcpu-pool160	tps=6096.732308	p50=74.8	p95=126.7	p99=164.2	backends_max=165	active_max=161	rc=0
+{"restored":20}
+SWEEPS_DONE

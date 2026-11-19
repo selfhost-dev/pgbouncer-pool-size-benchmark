@@ -1,0 +1,21 @@
+{"p":5,"r":0,"msg":"PgBouncer reconfiguration started."}
+s-managed-2vcpu-pool5	tps=1536.963544	p50=325.1	p95=332.6	p99=338.3	backends_max=31	active_max=6	rc=0
+{"p":10,"r":0,"msg":"PgBouncer reconfiguration started."}
+s-managed-2vcpu-pool10	tps=2680.719594	p50=186.0	p95=196.1	p99=202.1	backends_max=36	active_max=11	rc=0
+{"p":20,"r":0,"msg":"PgBouncer reconfiguration started."}
+s-managed-2vcpu-pool20	tps=3722.559394	p50=133.9	p95=141.2	p99=146.9	backends_max=46	active_max=18	rc=0
+{"p":40,"r":0,"msg":"PgBouncer reconfiguration started."}
+s-managed-2vcpu-pool40	tps=4054.089470	p50=122.4	p95=130.7	p99=141.3	backends_max=66	active_max=28	rc=0
+{"p":80,"r":0,"msg":"PgBouncer reconfiguration started."}
+s-managed-2vcpu-pool80	tps=4071.743202	p50=121.2	p95=136.6	p99=153.8	backends_max=106	active_max=59	rc=0
+{"p":160,"r":0,"msg":"PgBouncer reconfiguration started."}
+s-managed-2vcpu-pool160	tps=3749.679203	p50=129.4	p95=164.9	p99=191.9	backends_max=186	active_max=109	rc=0
+{"restored":20}
+s-selfrun-2vcpu-pool5	tps=1237.700962	p50=403.5	p95=419.8	p99=426.0	backends_max=7	active_max=6	cl_waiting_max=495 maxwait_s_max=0 sv_active_max=5	rc=0
+s-selfrun-2vcpu-pool10	tps=2453.589042	p50=203.1	p95=215.1	p99=221.2	backends_max=12	active_max=11	cl_waiting_max=490 maxwait_s_max=0 sv_active_max=10	rc=0
+s-selfrun-2vcpu-pool20	tps=4037.922912	p50=123.0	p95=131.3	p99=138.4	backends_max=22	active_max=21	cl_waiting_max=480 maxwait_s_max=0 sv_active_max=20	rc=0
+s-selfrun-2vcpu-pool40	tps=4863.004817	p50=100.9	p95=116.0	p99=125.6	backends_max=42	active_max=39	cl_waiting_max=460 maxwait_s_max=0 sv_active_max=40	rc=0
+s-selfrun-2vcpu-pool80	tps=4720.613320	p50=103.6	p95=121.4	p99=144.9	backends_max=82	active_max=72	cl_waiting_max=457 maxwait_s_max=0 sv_active_max=80	rc=0
+s-selfrun-2vcpu-pool160	tps=4217.034208	p50=113.0	p95=158.4	p99=199.0	backends_max=162	active_max=159	cl_waiting_max=454 maxwait_s_max=0 sv_active_max=160	rc=0
+SWEEP_SELFRUN_DONE
+SWEEPS_DONE

@@ -1,0 +1,7 @@
+    841 LWLock:WALWrite
+    453 Lock:transactionid
+     61 Lock:tuple
+     61 Client:ClientRead
+     24 IO:WalSync
+      9 CPU:running
+tps = 6879.049222 (without initial connection time)

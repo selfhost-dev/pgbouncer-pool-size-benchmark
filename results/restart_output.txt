@@ -1,0 +1,23 @@
+probes-started
+trigger 04:02:20
+{"msg":"Configuration update initiated. Instance will restart to apply changes to max_connections.","err":null}
+[restart1-direct] ok=1973 failed=24 first_fail=04:02:24.1 last_fail=04:02:26.4 outage_s=2.5
+[restart1-direct]   19x connection failed: FATAL:  the database system is shutting down
+[restart1-direct]   4x connection failed: server closed the connection unexpectedly
+[restart1-direct]   1x connection failed: FATAL:  the database system is starting up
+[restart1-managed] ok=1847 failed=122 first_fail=04:02:24.2 last_fail=04:02:39.2 outage_s=15.1
+[restart1-managed]   121x connection failed: FATAL:  server login has been failing, cached error: the database system is shutting down (server_login_retry)
+[restart1-managed]   1x connection timeout expired
+[restart1-selfrun] ok=1844 failed=1 first_fail=04:02:24.1 last_fail=04:02:24.1 outage_s=0.1
+[restart1-selfrun]   1x consuming input failed: terminating connection due to administrator command
+probes-started
+trigger 04:06:04
+{"msg":"Configuration update initiated. Instance will restart to apply changes to max_connections.","err":null}
+[restart2-direct] ok=1994 failed=4 first_fail=04:06:09.9 last_fail=04:06:10.3 outage_s=0.4
+[restart2-direct]   2x connection failed: server closed the connection unexpectedly
+[restart2-direct]   1x connection failed: FATAL:  the database system is shutting down
+[restart2-direct]   1x connection failed: FATAL:  the database system is starting up
+[restart2-managed] ok=1847 failed=122 first_fail=04:06:09.9 last_fail=04:06:24.9 outage_s=15.1
+[restart2-managed]   121x connection failed: FATAL:  server login has been failing, cached error: the database system is shutting down (server_login_retry)
+[restart2-managed]   1x connection timeout expired
+[restart2-selfrun] ok=1846 failed=0 first_fail=- last_fail=- outage_s=0.0

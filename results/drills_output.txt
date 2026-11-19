@@ -1,0 +1,113 @@
+
+=== 1. SET leaking between clients  [managed] ===
+client A ran: SET search_path TO leak_marker, public   (autocommit)
+20 new clients ran SHOW search_path: 0/20 saw 'leak_marker, public'
+client A's own next statement sees: leak_marker, public
+client A ran: SET statement_timeout = '1234ms'   (autocommit)
+20 new clients ran SHOW statement_timeout: 1/20 saw 1234ms
+client A's own next statement sees statement_timeout = 0
+fix — SET LOCAL inside BEGIN/COMMIT: inside the transaction = leak_marker, public; afterwards 0/20 new clients saw it
+
+=== 2a. protocol-level prepared statements (psycopg 3, prepare_threshold=0)  [managed] ===
+20 clients x 50 prepared executions: 1000 succeeded, 0 clients failed
+
+=== 2b. SQL-level PREPARE / EXECUTE  [managed] ===
+PREPARE once, then EXECUTE 30 times from the same client: 29/30 failed
+  error: InvalidSqlStatementName: prepared statement "get_bal" does not exist
+
+=== 3. LISTEN / NOTIFY  [managed] ===
+listener through managed: received 0/5 notifications (NOTIFY sent on a direct connection)
+NOTIFY sent through the pooler: accepted (no error)
+
+=== 4. session-level advisory locks  [managed] ===
+client A: pg_advisory_lock(42) -> ok, ran on backend pid 22753
+client B: pg_try_advisory_lock(42) -> False (backend pid 59952)
+pg_locks rows for advisory lock 42: 1
+client A: pg_advisory_unlock(42) -> False on backend pid 59954  NOTICE/WARNING: you don't own a lock of type ExclusiveLock
+after both clients disconnected, lock 42 is still held by: [(22753, 'pgbench', '127.0.0.1/32')]
+fix — pg_advisory_xact_lock(43) inside a transaction: held inside = 1, after COMMIT = 0
+
+=== 5. temporary tables  [managed] ===
+CREATE TEMP TABLE (PRESERVE ROWS), then 30 INSERTs from the same client: 29/30 failed
+  error: UndefinedTable: relation "tmp_report" does not exist
+20 other new clients: 0/20 can see client A's temp table
+ON COMMIT DROP inside one transaction: created, filled, read 100 rows, dropped at COMMIT — works
+
+=== 1. SET leaking between clients  [selfrun] ===
+client A ran: SET search_path TO leak_marker, public   (autocommit)
+20 new clients ran SHOW search_path: 0/20 saw 'leak_marker, public'
+client A's own next statement sees: leak_marker, public
+client A ran: SET statement_timeout = '1234ms'   (autocommit)
+20 new clients ran SHOW statement_timeout: 1/20 saw 1234ms
+client A's own next statement sees statement_timeout = 0
+fix — SET LOCAL inside BEGIN/COMMIT: inside the transaction = leak_marker, public; afterwards 0/20 new clients saw it
+
+=== 2a. protocol-level prepared statements (psycopg 3, prepare_threshold=0)  [selfrun] ===
+20 clients x 50 prepared executions: 1000 succeeded, 0 clients failed
+
+=== 2b. SQL-level PREPARE / EXECUTE  [selfrun] ===
+PREPARE once, then EXECUTE 30 times from the same client: 29/30 failed
+  error: InvalidSqlStatementName: prepared statement "get_bal" does not exist
+
+=== 3. LISTEN / NOTIFY  [selfrun] ===
+listener through selfrun: received 0/5 notifications (NOTIFY sent on a direct connection)
+NOTIFY sent through the pooler: accepted (no error)
+
+=== 4. session-level advisory locks  [selfrun] ===
+client A: pg_advisory_lock(52) -> ok, ran on backend pid 59963
+client B: pg_try_advisory_lock(52) -> False (backend pid 59965)
+pg_locks rows for advisory lock 52: 1
+client A: pg_advisory_unlock(52) -> False on backend pid 59966  NOTICE/WARNING: you don't own a lock of type ExclusiveLock
+after both clients disconnected, lock 52 is still held by: [(59963, 'pgbench', '<pgbouncer-host>/32')]
+fix — pg_advisory_xact_lock(43) inside a transaction: held inside = 1, after COMMIT = 0
+
+=== 5. temporary tables  [selfrun] ===
+CREATE TEMP TABLE (PRESERVE ROWS), then 30 INSERTs from the same client: 29/30 failed
+  error: UndefinedTable: relation "tmp_report" does not exist
+20 other new clients: 1/20 can see client A's temp table
+ON COMMIT DROP inside one transaction: created, filled, read 100 rows, dropped at COMMIT — works
+
+=== 1. SET leaking between clients  [selfrun-pool1] ===
+client A ran: SET search_path TO leak_marker, public   (autocommit)
+20 new clients ran SHOW search_path: 0/20 saw 'leak_marker, public'
+client A's own next statement sees: leak_marker, public
+client A ran: SET statement_timeout = '1234ms'   (autocommit)
+20 new clients ran SHOW statement_timeout: 20/20 saw 1234ms
+client A's own next statement sees statement_timeout = 1234ms
+fix — SET LOCAL inside BEGIN/COMMIT: inside the transaction = leak_marker, public; afterwards 0/20 new clients saw it
+
+=== 2a. protocol-level prepared statements (psycopg 3, prepare_threshold=0)  [selfrun-pool1] ===
+20 clients x 50 prepared executions: 1000 succeeded, 0 clients failed
+
+=== 2b. SQL-level PREPARE / EXECUTE  [selfrun-pool1] ===
+PREPARE once, then EXECUTE 30 times from the same client: 0/30 failed
+
+=== 3. LISTEN / NOTIFY  [selfrun-pool1] ===
+listener through selfrun-pool1: received 1/5 notifications (NOTIFY sent on a direct connection)
+NOTIFY sent through the pooler: accepted (no error)
+
+=== 4. session-level advisory locks  [selfrun-pool1] ===
+client A: pg_advisory_lock(62) -> ok, ran on backend pid 59991
+client B: pg_try_advisory_lock(62) -> True (backend pid 59991)
+pg_locks rows for advisory lock 62: 1
+client A: pg_advisory_unlock(62) -> True on backend pid 59991
+after both clients disconnected, lock 62 is still held by: [(59991, '', '<pgbouncer-host>/32')]
+fix — pg_advisory_xact_lock(43) inside a transaction: held inside = 1, after COMMIT = 0
+
+=== 5. temporary tables  [selfrun-pool1] ===
+CREATE TEMP TABLE (PRESERVE ROWS), then 30 INSERTs from the same client: 0/30 failed
+20 other new clients: 20/20 can see client A's temp table
+ON COMMIT DROP inside one transaction: created, filled, read 100 rows, dropped at COMMIT — works
+
+=== 2c. max_prepared_statements = 0 vs 200 [selfrun] ===
+-- max_prepared_statements=0
+20 clients x 50 prepared executions: 102 succeeded, 18 clients failed
+  error: DuplicatePreparedStatement: prepared statement "_pg3_0" already exists
+  error: InvalidSqlStatementName: prepared statement "_pg3_0" does not exist
+  error: DuplicatePreparedStatement: prepared statement "_pg3_0" already exists
+     17 pgbench: error: ERROR:  prepared statement "P_0" already exists
+      1 pgbench: error: Run was aborted; the above results are incomplete.
+      1 pgbench: error: client 0 script 0 aborted in command 1 query 0: ERROR:  prepared statement "P_0" does not exist
+-- max_prepared_statements=200
+20 clients x 50 prepared executions: 1000 succeeded, 0 clients failed
+      1 tps = 53847.743277 (without initial connection time)

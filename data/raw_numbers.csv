@@ -9,7 +9,6 @@ m-managed-A-200,<postgres-host>:6432,A,200,60,3746.663813,53.0,58.1,62.5,0,35,20
 m-direct-A-500,<postgres-host>:5432,A,500,60,NA,NA,NA,NA,0,338,2,NA,1,,not measured,not measured,2026-11-18T02:44:48Z,2026-11-18T02:44:50Z,"pgbench: error: connection to server at ""<postgres-host>"", port 5432 failed: FATAL:  remaining connection slots are reserved for roles with the SUPERUSER attribute"
 m-managed-A-500,<postgres-host>:6432,A,500,60,3679.055506,133.4,162.1,174.7,0,35,19,NA,0,m7i.large,92,31.1,2026-11-18T02:46:03Z,2026-11-18T02:47:04Z,
 m-direct-A-1000,<postgres-host>:5432,A,1000,60,NA,NA,NA,NA,0,345,2,NA,1,,not measured,not measured,2026-11-18T02:47:18Z,2026-11-18T02:47:20Z,"pgbench: error: connection to server at ""<postgres-host>"", port 5432 failed: FATAL:  remaining connection slots are reserved for roles with the SUPERUSER attribute"
-m-managed-A-1000,<postgres-host>:6432,A,1000,60,NA,NA,NA,NA,0,25,1,NA,0,m7i.large,0,31.1,2026-11-18T02:48:33Z,2026-11-18T02:57:06Z,
 m-direct-B-50,<postgres-host>:5432,B,50,60,32669.973477,1.4,2.2,3.7,0,56,51,NA,0,,not measured,not measured,2026-11-18T02:57:16Z,2026-11-18T02:58:16Z,
 m-managed-B-50,<postgres-host>:6432,B,50,60,31512.387655,1.6,2.1,2.3,0,25,3,NA,0,,not measured,not measured,2026-11-18T02:58:31Z,2026-11-18T02:59:31Z,
 m-direct-B-200,<postgres-host>:5432,B,200,60,32680.572408,5.7,10.0,18.1,0,225,12,NA,0,,not measured,not measured,2026-11-18T02:59:46Z,2026-11-18T03:00:46Z,
@@ -17,7 +16,6 @@ m-managed-B-200,<postgres-host>:6432,B,200,60,31532.338561,6.3,7.0,7.7,0,25,3,NA
 m-direct-B-500,<postgres-host>:5432,B,500,60,NA,NA,NA,NA,0,323,2,NA,1,,not measured,not measured,2026-11-18T03:02:16Z,2026-11-18T03:02:18Z,"pgbench: error: connection to server at ""<postgres-host>"", port 5432 failed: FATAL:  remaining connection slots are reserved for roles with the SUPERUSER attribute"
 m-managed-B-500,<postgres-host>:6432,B,500,60,31291.308800,15.9,16.9,18.8,0,25,3,NA,0,m7i.large,97,31.0,2026-11-18T03:03:31Z,2026-11-18T03:04:31Z,
 m-direct-B-1000,<postgres-host>:5432,B,1000,60,NA,NA,NA,NA,0,331,2,NA,1,,not measured,not measured,2026-11-18T03:04:47Z,2026-11-18T03:04:48Z,"pgbench: error: connection to server at ""<postgres-host>"", port 5432 failed: FATAL:  remaining connection slots are reserved for roles with the SUPERUSER attribute"
-m-managed-B-1000,<postgres-host>:6432,B,1000,60,NA,NA,NA,NA,0,25,1,NA,0,m7i.large,0,31.3,2026-11-18T03:06:02Z,2026-11-18T03:14:35Z,
 m-direct-C-50,<postgres-host>:5432,C,50,60,209.982236,202.5,280.4,345.3,0,56,10,NA,0,m7i.large,59,31.4,2026-11-18T03:14:45Z,2026-11-18T03:15:45Z,
 m-managed-C-50,<postgres-host>:6432,C,50,60,307.509275,126.6,172.3,208.9,0,25,9,NA,0,m7i.large,16,31.0,2026-11-18T03:16:00Z,2026-11-18T03:17:00Z,
 m-direct-C-200,<postgres-host>:5432,C,200,60,208.963980,821.0,1256.3,1649.5,0,219,44,NA,0,m7i.large,63,36.0,2026-11-18T03:17:16Z,2026-11-18T03:18:16Z,
@@ -25,9 +23,7 @@ m-managed-C-200,<postgres-host>:6432,C,200,60,325.332542,575.8,642.3,676.1,0,25,
 m-direct-C-500,<postgres-host>:5432,C,500,60,192.314448,1952.9,4660.6,7476.7,0,502,260,NA,2,m7i.large,61,43.4,2026-11-18T03:19:46Z,2026-11-18T03:20:46Z,"pgbench: error: connection to server at ""<postgres-host>"", port 5432 failed: FATAL:  remaining connection slots are reserved for roles with the SUPERUSER attribute"
 m-managed-C-500,<postgres-host>:6432,C,500,60,312.753186,1546.1,1660.0,1691.6,0,25,8,NA,0,m7i.large,17,31.3,2026-11-18T03:21:01Z,2026-11-18T03:22:01Z,
 m-direct-C-1000,<postgres-host>:5432,C,1000,60,193.216401,1947.2,4764.1,7213.2,0,502,267,NA,2,m7i.large,62,43.1,2026-11-18T03:22:16Z,2026-11-18T03:23:17Z,"pgbench: error: connection to server at ""<postgres-host>"", port 5432 failed: FATAL:  remaining connection slots are reserved for roles with the SUPERUSER attribute"
-m-managed-C-1000,<postgres-host>:6432,C,1000,60,0.919687,120146.0,122811.4,122835.6,0,29,1,NA,2,m7i.large,38,31.5,2026-11-18T03:23:31Z,2026-11-18T03:25:34Z,pgbench: error: client 757 script 0 aborted in command 4 query 0: FATAL:  query_wait_timeout
 x-selfrun-A-1000,<pgbouncer-host>:6432,A,1000,30,4042.978390,245.7,257.5,264.6,0,49,20,cl_waiting_max=980 maxwait_s_max=0 sv_active_max=20,0,m7i.large,80,32.5,2026-11-18T03:26:13Z,2026-11-18T03:26:43Z,
-x-managed-A-950,<postgres-host>:6432,A,950,30,3880.144140,244.5,252.3,256.2,0,49,19,NA,0,m7i.large,77,32.8,2026-11-18T03:26:57Z,2026-11-18T03:27:27Z,
 s-managed-2vcpu-pool5,<postgres-host>:6432,A,500,60,1536.963544,325.1,332.6,338.3,0,31,6,NA,0,m7i.large,64,31.6,2026-11-18T03:38:02Z,2026-11-18T03:39:02Z,
 s-managed-2vcpu-pool10,<postgres-host>:6432,A,500,60,2680.719594,186.0,196.1,202.1,0,36,11,NA,0,m7i.large,78,32.0,2026-11-18T03:39:33Z,2026-11-18T03:40:33Z,
 s-managed-2vcpu-pool20,<postgres-host>:6432,A,500,60,3722.559394,133.9,141.2,146.9,0,46,18,NA,0,m7i.large,94,32.9,2026-11-18T03:41:03Z,2026-11-18T03:42:04Z,

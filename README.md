@@ -11,7 +11,7 @@ Tested on 18 November 2026 with PostgreSQL 18.7 and PgBouncer 1.26.1 on AWS ap-s
 - The same pgbench workloads, run directly against Postgres and through PgBouncer, at 50 to 1,000 clients
 - Throughput and latency for `default_pool_size` values from 5 to 160, at 500 clients, on 2, 4 and 8 vCPU databases
 - Six things transaction pooling breaks: session settings, prepared statements, `LISTEN`, advisory locks, temp tables and migrations
-- PgBouncer's common errors, its own CPU use, and how fast new clients get in after a Postgres restart
+- PgBouncer's common errors and its own CPU use
 
 ## Setup
 
@@ -74,12 +74,12 @@ Run the scripts on the client machine. It needs `psql`, `pgbench` and `pg_dump` 
 | Script | What it does |
 |---|---|
 | `run.sh <label> <host> <port> <A\|B\|C> <clients> [seconds]` | One pgbench run, plus Postgres backend counts and `SHOW POOLS` each second |
-| `matrix.sh` | Direct vs managed pooler, workloads A, B and C at 50, 200, 500 and 1,000 clients |
+| `matrix.sh` | Direct vs managed pooler, workloads A, B and C at 50, 200, 500 and 1,000 clients. `data/` doesn't include the managed pooler's 1,000-client runs yet; we'll add them after a re-run |
 | `sweep_selfrun.sh <tag>` | Pool sizes 5 to 160 on the self-run pooler (sets `default_pool_size` through the admin console, then `RECONNECT`) |
-| `sweep_managed.sh`, `sweep_managed_only.sh` | The same sweep on Selfhost.dev managed pooling. They set the pool size through the `selfhost` CLI and ran from a laptop, sending each run to the client with a small SSH wrapper (`./vm client <command>`, not included). Run `run.sh` on the client yourself to reproduce them elsewhere |
+| `sweep_managed.sh`, `sweep_managed_only.sh` | The same sweep on Selfhost.dev managed pooling. They set `default_pool_size` with the [`selfhost` CLI](https://github.com/selfhost-dev/selfhost-cli)'s `api` command (install from `cli.selfhost.dev`, then `selfhost auth login`) and ran from a laptop, sending each run to the client with a small SSH wrapper (`./vm client <command>`, not included). You can set the same pool size in the console (database page, **Connection** → **Connection pooling (PgBouncer)** → **Configure pooling** → **Default pool size**) or through the Selfhost.dev MCP server (`@selfhost.dev/mcp-server`, tool `reconfigure_pgbouncer`). Connection pooling needs a paid plan |
 | `burst.sh` | 50 steady clients plus a 450-client burst, to test `reserve_pool_size` |
 | `drills.py managed\|selfrun\|selfrun-pool1` | The six transaction-mode drills; `drills.sql` lists their statements |
-| `errors.sh`, `probe.py` | The error cases, and a connect-and-`SELECT 1` probe every 100 ms during a restart. The "managed" sections of `errors.sh` expect a pooler on port 6432 of `PG_HOST`, as on Selfhost.dev managed pooling; without one they fail with "connection refused" |
+| `errors.sh`, `probe.py` | The error cases, and a connect-and-`SELECT 1` probe every 100 ms for restart tests (results not included yet). The "managed" sections of `errors.sh` expect a pooler on port 6432 of `PG_HOST`, as on Selfhost.dev managed pooling; without one they fail with "connection refused" |
 | `idle_mem.py` | Memory per idle direct connection |
 
 ## Reading the numbers
